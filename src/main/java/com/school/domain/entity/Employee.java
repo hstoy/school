@@ -5,7 +5,15 @@ import com.school.domain.enums.EmployeeType;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.util.Date;
 import java.util.Set;
 
@@ -55,24 +63,24 @@ public class Employee extends BaseEntity {
     @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 
+    @Getter
+    @Setter
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "work_contact_id")
-    @Getter
-    @Setter
     private WorkContact workContact;
 
-    @OneToOne(mappedBy = "employee")
     @Getter
     @Setter
+    @OneToOne(mappedBy = "employee")
     private Teacher teacher;
 
-    @OneToMany(mappedBy = "employee")
     @Getter
     @Setter
+    @OneToMany(mappedBy = "employee")
     private Set<Salary> salaries;
 
-    @OneToOne(mappedBy = "employee")
     @Getter
     @Setter
+    @OneToOne(mappedBy = "employee")
     private User user;
 }
