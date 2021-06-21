@@ -39,20 +39,20 @@ public class Employee extends BaseEntity {
     @Column(name = "hire_date")
     private Date hireDate;
 
-    @Column(name = "quit_date")
     @Getter
     @Setter
+    @Column(name = "quit_date")
     private Date quitDate;
 
-    @Column(name = "was_dismissed", columnDefinition = "bit DEFAULT 0")
     @Getter
     @Setter
+    @Column(name = "was_dismissed", columnDefinition = "bit DEFAULT 0")
     private boolean wasDismissed;
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "personal_information_id")
     @Getter
     @Setter
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 
     @OneToOne(fetch = FetchType.EAGER)
