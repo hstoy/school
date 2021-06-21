@@ -1,11 +1,10 @@
-package com.school.entity;
+package com.school.model;
 
-import com.school.entity.base.BaseEntity;
-import com.school.entity.enums.Gender;
+import com.school.model.base.BaseEntity;
+import com.school.model.enums.Gender;
 
 import javax.persistence.*;
 import java.util.Date;
-import java.util.List;
 import java.util.Set;
 
 @Entity

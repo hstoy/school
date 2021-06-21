@@ -1,6 +1,6 @@
-package com.school.entity;
+package com.school.model;
 
-import com.school.entity.base.ContactBaseEntity;
+import com.school.model.base.ContactBaseEntity;
 
 import javax.persistence.*;
 

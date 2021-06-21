@@ -1,10 +1,9 @@
-package com.school.entity;
+package com.school.model;
 
-import com.school.entity.base.BaseEntity;
-import com.school.entity.enums.AddressType;
+import com.school.model.base.BaseEntity;
+import com.school.model.enums.AddressType;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table

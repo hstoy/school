@@ -1,4 +1,4 @@
-package com.school.entity.base;
+package com.school.model.base;
 
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;

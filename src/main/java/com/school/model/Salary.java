@@ -1,7 +1,7 @@
-package com.school.entity;
+package com.school.model;
 
-import com.school.entity.base.BaseEntity;
-import com.school.entity.enums.PaymentMethod;
+import com.school.model.base.BaseEntity;
+import com.school.model.enums.PaymentMethod;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,6 +1,6 @@
-package com.school.entity;
+package com.school.model;
 
-import com.school.entity.base.BaseEntity;
+import com.school.model.base.BaseEntity;
 
 import javax.persistence.*;
 import java.util.Set;
