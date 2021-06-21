@@ -1,22 +1,28 @@
 package com.school.entity;
 
+import com.school.entity.base.BaseEntity;
 import com.school.entity.enums.EmployeeType;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Set;
 
 @Entity
-@Table(name = "employee")
+@Table
 public class Employee extends BaseEntity {
     private EmployeeType employeeType;
-    private PersonalInformation personalInformation;
-    private Teacher teacher;
     private int totalVacationDays;
     private int usedVacationDays;
     private boolean isOnVacation;
     private Date hireDate;
     private Date quitDate;
     private boolean wasDismissed;
+
+    private PersonalInformation personalInformation;
+    private WorkContact workContact;
+    private Teacher teacher;
+    private Set<Salary> salaries;
+    private User user;
 
     public Employee() {
     }
@@ -31,26 +37,7 @@ public class Employee extends BaseEntity {
         this.employeeType = employeeType;
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
-    public PersonalInformation getPersonalInformation() {
-        return personalInformation;
-    }
-
-    public void setPersonalInformation(PersonalInformation personalInformation) {
-        this.personalInformation = personalInformation;
-    }
-
-    @OneToOne(mappedBy = "employee")
-    public Teacher getTeacher() {
-        return teacher;
-    }
-
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
-    }
-
-    @Column(name = "total_vacation_days", nullable = false)
+    @Column(name = "total_vacation_days", nullable = false, length = 2)
     public int getTotalVacationDays() {
         return totalVacationDays;
     }
@@ -58,8 +45,7 @@ public class Employee extends BaseEntity {
     public void setTotalVacationDays(int totalVacationDays) {
         this.totalVacationDays = totalVacationDays;
     }
-
-    @Column(name = "used_vacation_days", columnDefinition = "int DEFAULT 0")
+    @Column(name = "used_vacation_days", length = 2, columnDefinition = "int DEFAULT 0")
     public int getUsedVacationDays() {
         return usedVacationDays;
     }
@@ -95,12 +81,59 @@ public class Employee extends BaseEntity {
         this.quitDate = quitDate;
     }
 
-    @Column(name = "was_dismissed")
-    public boolean wasDismissed() {
+    @Column(name = "was_dismissed", columnDefinition = "bit DEFAULT 0")
+    public boolean getWasDismissed() {
         return wasDismissed;
     }
 
     public void setWasDismissed(boolean wasDismissed) {
         this.wasDismissed = wasDismissed;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "personal_information_id")
+    public PersonalInformation getPersonalInformation() {
+        return personalInformation;
+    }
+
+    public void setPersonalInformation(PersonalInformation personalInformation) {
+        this.personalInformation = personalInformation;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "work_contact_id")
+    public WorkContact getWorkContact() {
+        return workContact;
+    }
+
+    public void setWorkContact(WorkContact workContact) {
+        this.workContact = workContact;
+    }
+
+    @OneToOne(mappedBy = "employee")
+    public Teacher getTeacher() {
+        return teacher;
+    }
+
+    public void setTeacher(Teacher teacher) {
+        this.teacher = teacher;
+    }
+
+    @OneToMany(mappedBy = "employee")
+    public Set<Salary> getSalaries() {
+        return salaries;
+    }
+
+    public void setSalaries(Set<Salary> salaries) {
+        this.salaries = salaries;
+    }
+
+    @OneToOne(mappedBy = "employee")
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,30 +1,23 @@
 package com.school.entity;
 
+import com.school.entity.base.BaseEntity;
 import com.school.entity.enums.AddressType;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
 public class Address extends BaseEntity {
-    private PersonalInformation personalInformation;
     private AddressType addressType;
     private String city;
     private String area;
     private String street;
     private String block;
 
+    private PersonalInformation personalInformation;
+
     public Address() {
-    }
-
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    public PersonalInformation getPersonalInformation() {
-        return personalInformation;
-    }
-
-    public void setPersonalInformation(PersonalInformation personalInformation) {
-        this.personalInformation = personalInformation;
     }
 
     @Enumerated(EnumType.STRING)
@@ -37,7 +30,7 @@ public class Address extends BaseEntity {
         this.addressType = addressType;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 50)
     public String getCity() {
         return city;
     }
@@ -46,6 +39,7 @@ public class Address extends BaseEntity {
         this.city = city;
     }
 
+    @Column(length = 50)
     public String getArea() {
         return area;
     }
@@ -54,7 +48,7 @@ public class Address extends BaseEntity {
         this.area = area;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 100)
     public String getStreet() {
         return street;
     }
@@ -63,12 +57,22 @@ public class Address extends BaseEntity {
         this.street = street;
     }
 
-    @Column(nullable = false)
+    @Column(nullable = false, length = 5)
     public String getBlock() {
         return block;
     }
 
     public void setBlock(String block) {
         this.block = block;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "address")
+    public PersonalInformation getPersonalInformation() {
+        return personalInformation;
+    }
+
+    public void setPersonalInformation(PersonalInformation personalInformation) {
+        this.personalInformation = personalInformation;
     }
 }

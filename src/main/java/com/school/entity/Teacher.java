@@ -1,20 +1,22 @@
 package com.school.entity;
 
+import com.school.entity.base.BaseEntity;
+
 import javax.persistence.*;
-import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table
 public class Teacher extends BaseEntity {
     private Employee employee;
-    private List<Student> students;
-    private String subject;
+    private Set<Student> students;
+    private Subject subject;
 
     public Teacher() {
     }
 
     @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
+    @JoinColumn(name = "employee_id")
     public Employee getEmployee() {
         return employee;
     }
@@ -23,20 +25,22 @@ public class Teacher extends BaseEntity {
         this.employee = employee;
     }
 
-    @OneToMany(mappedBy = "teacher")
-    public List<Student> getStudents() {
+    @ManyToMany(mappedBy = "teachers")
+    public Set<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(List<Student> students) {
+    public void setStudents(Set<Student> students) {
         this.students = students;
     }
 
-    public String getSubject() {
+    @OneToOne
+    @JoinColumn(name = "subject_id")
+    public Subject getSubject() {
         return subject;
     }
 
-    public void setSubject(String subject) {
+    public void setSubject(Subject subject) {
         this.subject = subject;
     }
 }

@@ -1,20 +1,34 @@
 package com.school.entity;
 
+import com.school.entity.base.BaseEntity;
+
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table
 public class Student extends BaseEntity {
-    private PersonalInformation personalInformation;
-    private Teacher teacher;
-    private String classRoom;
     private int grade;
+
+    private PersonalInformation personalInformation;
+    private Set<Teacher> teachers;
+    private Set<Parent> parents;
+    private Set<Grades> grades;
 
     public Student() {
     }
 
-    @OneToOne(fetch = FetchType.EAGER)
-    @PrimaryKeyJoinColumn
+    @Column(length = 2)
+    public int getGrade() {
+        return grade;
+    }
+
+    public void setGrade(int grade) {
+        this.grade = grade;
+    }
+
+    @OneToOne
+    @JoinColumn(name = "personal_information_id")
     public PersonalInformation getPersonalInformation() {
         return personalInformation;
     }
@@ -23,30 +37,38 @@ public class Student extends BaseEntity {
         this.personalInformation = personalInformation;
     }
 
-    @ManyToOne
-    @PrimaryKeyJoinColumn
-    public Teacher getTeacher() {
-        return teacher;
+    @ManyToMany
+    @JoinTable(
+            name = "student_teacher",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id"))
+    public Set<Teacher> getTeachers() {
+        return teachers;
     }
 
-    public void setTeacher(Teacher teacher) {
-        this.teacher = teacher;
+    public void setTeachers(Set<Teacher> teachers) {
+        this.teachers = teachers;
     }
 
-    @Column(name = "class_room")
-    public String getClassRoom() {
-        return classRoom;
+    @ManyToMany
+    @JoinTable(
+            name = "student_parent",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "parent_id"))
+    public Set<Parent> getParents() {
+        return parents;
     }
 
-    public void setClassRoom(String classRoom) {
-        this.classRoom = classRoom;
+    public void setParents(Set<Parent> parents) {
+        this.parents = parents;
     }
 
-    public int getGrade() {
-        return grade;
+    @OneToMany(mappedBy = "students")
+    public Set<Grades> getGrades() {
+        return grades;
     }
 
-    public void setGrade(int grade) {
-        this.grade = grade;
+    public void setGrades(Set<Grades> grades) {
+        this.grades = grades;
     }
 }

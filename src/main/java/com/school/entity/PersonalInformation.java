@@ -1,22 +1,75 @@
 package com.school.entity;
 
+import com.school.entity.base.BaseEntity;
+import com.school.entity.enums.Gender;
+
 import javax.persistence.*;
+import java.util.Date;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "personal_information")
 public class PersonalInformation extends BaseEntity {
-    private Employee employee;
-    private Student student;
-    private List<Address> address;
     private String firstName;
     private String middleName;
     private String lastName;
-    private String email;
-    private String mobile;
-    private String phone;
+    private Gender gender;
+    private Date dateOfBirth;
+
+    private Employee employee;
+    private Set<Address> address;
+    private PersonalContact personalContact;
+    private Student student;
+    private Parent parent;
 
     public PersonalInformation() {
+    }
+
+    @Column(name = "first_name", length = 50, nullable = false)
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    @Column(name = "middle_name", length = 50)
+    public String getMiddleName() {
+        return middleName;
+    }
+
+    public void setMiddleName(String middleName) {
+        this.middleName = middleName;
+    }
+
+    @Column(name = "last_name", length = 50, nullable = false)
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "gender", columnDefinition = "ENUM('MALE', 'FEMALE')")
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    @Column(name = "date_of_birth")
+    public Date getDateOfBirth() {
+        return dateOfBirth;
+    }
+
+    public void setDateOfBirth(Date dateOfBirth) {
+        this.dateOfBirth = dateOfBirth;
     }
 
     @OneToOne(mappedBy = "personalInformation")
@@ -28,6 +81,25 @@ public class PersonalInformation extends BaseEntity {
         this.employee = employee;
     }
 
+    @OneToMany(mappedBy = "personalInformation")
+    public Set<Address> getAddress() {
+        return address;
+    }
+
+    public void setAddress(Set<Address> address) {
+        this.address = address;
+    }
+
+    @OneToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "contact_id")
+    public PersonalContact getPersonalContact() {
+        return personalContact;
+    }
+
+    public void setPersonalContact(PersonalContact personalContact) {
+        this.personalContact = personalContact;
+    }
+
     @OneToOne(mappedBy = "personalInformation")
     public Student getStudent() {
         return student;
@@ -37,66 +109,12 @@ public class PersonalInformation extends BaseEntity {
         this.student = student;
     }
 
-    @OneToMany(mappedBy = "personalInformation")
-    public List<Address> getAddress() {
-        return address;
+    @OneToOne(mappedBy = "personalInformation")
+    public Parent getParent() {
+        return parent;
     }
 
-    public void setAddress(List<Address> address) {
-        this.address = address;
-    }
-
-    @Column(name = "first_name", nullable = false)
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    @Column(name = "middle_name")
-    public String getMiddleName() {
-        return middleName;
-    }
-
-    public void setMiddleName(String middleName) {
-        this.middleName = middleName;
-    }
-
-    @Column(name = "last_name", nullable = false)
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    @Column
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    @Column(nullable = false)
-    public String getMobile() {
-        return mobile;
-    }
-
-    public void setMobile(String mobile) {
-        this.mobile = mobile;
-    }
-
-    @Column
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
+    public void setParent(Parent parent) {
+        this.parent = parent;
     }
 }
