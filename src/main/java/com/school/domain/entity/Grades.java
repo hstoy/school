@@ -12,24 +12,19 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
+@Getter
+@Setter
 @Entity
 @Table
 public class Grades extends BaseEntity {
 
-    @Getter
-    @Setter
     @Column(scale = 3, precision = 2)
-    private double grade;
+    private Double grade;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "student_id")
     private Student student;
 
-    @Getter
-    @Setter
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "subject_id")
     private Subject subject;

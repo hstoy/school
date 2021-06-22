@@ -13,39 +13,28 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-
+@Getter
+@Setter
 @Entity
 @Table
 public class Address extends BaseEntity {
 
-    @Getter
-    @Setter
     @Enumerated(EnumType.STRING)
     @Column(name = "address_type", columnDefinition = "ENUM('PRIMARY', 'SECONDARY') DEFAULT 'PRIMARY'")
     private AddressType addressType;
 
-    @Getter
-    @Setter
     @Column(nullable = false, length = 50)
     private String city;
 
-    @Getter
-    @Setter
     @Column(length = 50)
     private String area;
 
-    @Getter
-    @Setter
     @Column(nullable = false, length = 100)
     private String street;
 
-    @Getter
-    @Setter
     @Column(nullable = false, length = 5)
     private String block;
 
-    @Getter
-    @Setter
     @ManyToOne
     @JoinColumn(name = "address")
     private PersonalInformation personalInformation;

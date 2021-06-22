@@ -13,23 +13,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Teacher extends BaseEntity {
 
-    @Getter
-    @Setter
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "employee_id")
     private Employee employee;
 
-    @Getter
-    @Setter
     @ManyToMany(mappedBy = "teachers")
     private Set<Student> students;
 
-    @Getter
-    @Setter
     @OneToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;

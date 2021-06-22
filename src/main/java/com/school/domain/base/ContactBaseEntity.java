@@ -6,16 +6,14 @@ import lombok.Setter;
 import javax.persistence.Column;
 import javax.persistence.MappedSuperclass;
 
+@Getter
+@Setter
 @MappedSuperclass
 public abstract class ContactBaseEntity extends BaseEntity {
 
-    @Getter
-    @Setter
     @Column(unique = true, length = 50)
     private String email;
 
-    @Getter
-    @Setter
     @Column(unique = true, length = 20)
     private String mobile;
 }

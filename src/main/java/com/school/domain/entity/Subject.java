@@ -9,27 +9,21 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Subject extends BaseEntity {
 
-    @Getter
-    @Setter
     @Column(nullable = false, unique = true, length = 50)
     private String name;
 
-    @Getter
-    @Setter
     @Column(name = "is_active")
     private boolean isActive;
 
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "subject")
     private Teacher teacher;
 
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "subject")
     private Grades grades;
 }

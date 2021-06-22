@@ -9,23 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-
+@Getter
+@Setter
 @Entity
 @Table(name = "personal_contact")
 public class PersonalContact extends ContactBaseEntity {
 
-    @Getter
-    @Setter
     @Column(length = 20)
     private String phone;
 
-    @Getter
-    @Setter
     @Column(length = 20, nullable = false)
     private String emergency;
 
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "personalContact")
     private PersonalInformation personalInformation;
 }

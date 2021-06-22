@@ -15,23 +15,19 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
 @Table
 public class Student extends BaseEntity {
 
-    @Getter
-    @Setter
     @Column(length = 2)
     private int grade;
 
-    @Getter
-    @Setter
     @OneToOne
     @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 
-    @Getter
-    @Setter
     @ManyToMany
     @JoinTable(
             name = "student_teacher",
@@ -39,8 +35,6 @@ public class Student extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "teacher_id"))
     private Set<Teacher> teachers;
 
-    @Getter
-    @Setter
     @ManyToMany
     @JoinTable(
             name = "student_parent",
@@ -48,8 +42,6 @@ public class Student extends BaseEntity {
             inverseJoinColumns = @JoinColumn(name = "parent_id"))
     private Set<Parent> parents;
 
-    @Getter
-    @Setter
     @OneToMany(mappedBy = "student")
     private Set<Grades> grades;
 }

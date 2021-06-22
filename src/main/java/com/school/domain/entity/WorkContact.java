@@ -9,22 +9,18 @@ import javax.persistence.Entity;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+@Getter
+@Setter
 @Entity
 @Table(name = "work_contact")
 public class WorkContact extends ContactBaseEntity {
 
-    @Getter
-    @Setter
     @Column(name = "room_number")
     private String roomNumber;
 
-    @Getter
-    @Setter
     @Column(name = "is_valid")
     private boolean isValid;
 
-    @Getter
-    @Setter
     @OneToOne(mappedBy = "workContact")
     private Employee employee;
 }
