@@ -2,6 +2,8 @@ package com.school.domain.base;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.Generated;
+import org.hibernate.annotations.GenerationTime;
 
 
 import javax.persistence.Column;
@@ -21,8 +23,10 @@ public abstract class BaseEntity {
     private long id;
 
     @Column(name = "date_created", updatable = false, columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Generated(value = GenerationTime.INSERT)
     private Date dateCreate;
 
     @Column(name = "date_modified", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
+    @Generated(value = GenerationTime.ALWAYS)
     private Date dateModified;
 }
