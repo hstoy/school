@@ -36,6 +36,6 @@ public class Address extends BaseEntity {
     private String block;
 
     @ManyToOne
-    @JoinColumn(name = "address")
+    @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 }

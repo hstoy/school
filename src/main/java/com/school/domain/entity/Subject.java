@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -20,10 +19,4 @@ public class Subject extends BaseEntity {
 
     @Column(name = "is_active")
     private boolean isActive;
-
-    @OneToOne(mappedBy = "subject")
-    private Teacher teacher;
-
-    @OneToOne(mappedBy = "subject")
-    private Grades grades;
 }

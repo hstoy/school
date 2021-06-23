@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -20,7 +19,4 @@ public class WorkContact extends ContactBaseEntity {
 
     @Column(name = "is_valid")
     private boolean isValid;
-
-    @OneToOne(mappedBy = "workContact")
-    private Employee employee;
 }

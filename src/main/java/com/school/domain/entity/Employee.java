@@ -11,11 +11,9 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import java.util.Date;
-import java.util.Set;
 
 @Getter
 @Setter
@@ -52,13 +50,4 @@ public class Employee extends BaseEntity {
     @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "work_contact_id")
     private WorkContact workContact;
-
-    @OneToOne(mappedBy = "employee")
-    private Teacher teacher;
-
-    @OneToMany(mappedBy = "employee")
-    private Set<Salary> salaries;
-
-    @OneToOne(mappedBy = "employee")
-    private User user;
 }

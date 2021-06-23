@@ -6,7 +6,6 @@ import lombok.Setter;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -20,7 +19,4 @@ public class PersonalContact extends ContactBaseEntity {
 
     @Column(length = 20, nullable = false)
     private String emergency;
-
-    @OneToOne(mappedBy = "personalContact")
-    private PersonalInformation personalInformation;
 }
