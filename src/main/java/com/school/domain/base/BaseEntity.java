@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.MappedSuperclass;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import java.util.Date;
 
 @Getter
@@ -28,5 +30,6 @@ public abstract class BaseEntity {
 
     @Column(name = "date_modified", columnDefinition = "TIMESTAMP DEFAULT CURRENT_TIMESTAMP")
     @Generated(value = GenerationTime.ALWAYS)
+    @Temporal(TemporalType.TIMESTAMP)
     private Date dateModified;
 }

@@ -3,14 +3,14 @@ package com.school.service.interfaces;
 import com.school.domain.dto.subject.CreateSubjectList;
 import com.school.domain.dto.subject.EditSubjectList;
 import com.school.domain.dto.subject.SubjectDto;
+import org.springframework.data.domain.Pageable;
 
-import java.sql.SQLException;
 import java.util.List;
 
 public interface SubjectService {
-    List<SubjectDto> findAll();
+    List<SubjectDto> findAll(Pageable pageable);
 
-    void createSubjects(CreateSubjectList subjects);
+    List<SubjectDto> createSubjects(CreateSubjectList subjects);
 
-    void updateSubjects(EditSubjectList subjects) throws SQLException;
+    List<SubjectDto> updateSubjects(EditSubjectList subjects);
 }

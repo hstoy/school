@@ -6,11 +6,8 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApplicationConfig {
-    private static ModelMapper mapper;
 
-    static {
-        mapper = new ModelMapper();
-    }
+    private ModelMapper mapper = new ModelMapper();
 
     @Bean
     public ModelMapper modelMapper() {
