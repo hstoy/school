@@ -2,10 +2,10 @@ package com.school.web.controller;
 
 import com.school.domain.dto.subject.CreateSubjectList;
 import com.school.domain.dto.subject.EditSubjectList;
-import com.school.domain.dto.subject.SubjectDto;
 import com.school.service.interfaces.SubjectService;
-import com.school.utils.ResponseUtils;
+import com.school.utils.ApiResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
@@ -17,13 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.validation.Valid;
-import java.sql.SQLException;
-import java.util.List;
-
-import static com.school.constants.SubjectConstants.DUPLICATE_NAME_ERROR_CODE;
-import static com.school.constants.SubjectConstants.SUBJECT_ID_MISSING_ERROR_CODE;
-import static com.school.constants.SubjectConstants.SUBJECT_NAME_ONLY_LETTERS_ERROR_CODE;
-import static com.school.constants.SubjectConstants.UNABLE_TO_UPDATE_SUBJECT_ERROR_CODE;
+import java.util.Collections;
 
 @RestController
 @RequestMapping(value = "/api/subjects")
@@ -36,37 +30,17 @@ public class SubjectController {
     }
 
     @GetMapping
-    public List<SubjectDto> getSubjects() {
-        return subjectService.findAll();
+    public ResponseEntity getSubjects(Pageable pageable) {
+        return ApiResponse.createSuccessResponse(Collections.singletonList(subjectService.findAll(pageable)), HttpStatus.OK);
     }
 
-    @PostMapping(value = "/create")
-    public ResponseEntity<Object> createSubjects(@Valid @RequestBody CreateSubjectList model, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseUtils.createErrorResponse(result, HttpStatus.BAD_REQUEST, SUBJECT_NAME_ONLY_LETTERS_ERROR_CODE);
-        }
-
-        try {
-            subjectService.createSubjects(model);
-        } catch (IllegalArgumentException e) {
-            return ResponseUtils.createErrorResponse(e.getMessage(), DUPLICATE_NAME_ERROR_CODE, HttpStatus.BAD_REQUEST);
-        }
-
-        return ResponseUtils.createSuccessResponse(HttpStatus.CREATED);
+    @PostMapping
+    public ResponseEntity createSubjects(@Valid @RequestBody CreateSubjectList model, BindingResult result) { ;
+        return ApiResponse.createSuccessResponse(Collections.singletonList(subjectService.createSubjects(model)), HttpStatus.CREATED);
     }
 
-    @PatchMapping(value = "/edit")
-    public ResponseEntity<Object> editSubjects(@Valid @RequestBody EditSubjectList model, BindingResult result) {
-        if (result.hasErrors()) {
-            return ResponseUtils.createErrorResponse(result, HttpStatus.BAD_REQUEST, SUBJECT_ID_MISSING_ERROR_CODE);
-        }
-
-        try {
-            subjectService.updateSubjects(model);
-        } catch (SQLException e) {
-            return ResponseUtils.createErrorResponse(e.getMessage(), UNABLE_TO_UPDATE_SUBJECT_ERROR_CODE, HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-
-        return ResponseUtils.createSuccessResponse(HttpStatus.NO_CONTENT);
+    @PatchMapping
+    public ResponseEntity editSubjects(@Valid @RequestBody EditSubjectList model, BindingResult result) {
+        return ApiResponse.createSuccessResponse(Collections.singletonList(subjectService.updateSubjects(model)), HttpStatus.OK);
     }
 }
