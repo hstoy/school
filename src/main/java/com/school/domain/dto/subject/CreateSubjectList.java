@@ -10,6 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class CreateSubjectList implements ListSubjectDto {
+    
     @Valid
     @JsonProperty
     private List<CreateSubjectDto> subjects;
