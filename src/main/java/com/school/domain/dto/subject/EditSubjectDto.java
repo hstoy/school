@@ -5,7 +5,7 @@ import lombok.Setter;
 
 import javax.validation.constraints.NotNull;
 
-import static com.school.constants.SubjectConstants.SUBJECT_ERR_1003;
+import static com.school.utils.constants.SubjectConstants.SUBJECT_ERR_1003;
 
 @Getter
 @Setter

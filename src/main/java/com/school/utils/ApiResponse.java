@@ -1,7 +1,7 @@
 package com.school.utils;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import com.school.constants.ErrorCodes;
+import com.school.utils.enums.ErrorCodes;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;

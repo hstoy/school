@@ -1,6 +1,5 @@
 package com.school.domain.dto.address;
 
-import com.school.domain.enums.AddressType;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -5,8 +5,8 @@ import lombok.Setter;
 
 import javax.validation.constraints.Pattern;
 
-import static com.school.constants.SubjectConstants.SUBJECT_ERR_1000;
-import static com.school.constants.SubjectConstants.SUBJECT_NAME_VALIDATION_REGEX;
+import static com.school.utils.constants.SubjectConstants.SUBJECT_ERR_1000;
+import static com.school.utils.constants.SubjectConstants.SUBJECT_NAME_VALIDATION_REGEX;
 
 @Getter
 @Setter

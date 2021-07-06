@@ -1,4 +1,4 @@
-package com.school.constants;
+package com.school.utils.constants;
 
 public class SubjectConstants {
 

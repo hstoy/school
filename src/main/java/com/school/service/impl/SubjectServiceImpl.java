@@ -1,6 +1,6 @@
 package com.school.service.impl;
 
-import com.school.constants.ErrorCodes;
+import com.school.utils.enums.ErrorCodes;
 import com.school.domain.dto.subject.CreateSubjectDto;
 import com.school.domain.dto.subject.CreateSubjectList;
 import com.school.domain.dto.subject.EditSubjectList;
@@ -13,7 +13,6 @@ import com.school.service.interfaces.SubjectService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
