@@ -9,8 +9,6 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Getter
@@ -34,8 +32,4 @@ public class Address extends BaseEntity {
 
     @Column(nullable = false, length = 5)
     private String block;
-
-    @ManyToOne
-    @JoinColumn(name = "personal_information_id")
-    private PersonalInformation personalInformation;
 }

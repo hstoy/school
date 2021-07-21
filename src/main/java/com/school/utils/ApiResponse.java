@@ -25,6 +25,7 @@ public class ApiResponse {
     private String errorMessage;
     private int errorCode;
     private List<Object> result;
+    private long recordId;
 
     public static ResponseEntity createErrorResponse(BindingResult result, HttpStatus httpCode) {
         String error = result.getFieldError().getDefaultMessage();
@@ -51,6 +52,14 @@ public class ApiResponse {
             setStatus(STATUS_SUCCESS);
             setStatusCode(STATUS_CODE_SUCCESS);
             setResult(result);
+        }}, httpCode);
+    }
+
+    public static ResponseEntity createSuccessResponse(long id, HttpStatus httpCode) {
+        return new ResponseEntity<>(new ApiResponse() {{
+            setStatus(STATUS_SUCCESS);
+            setStatusCode(STATUS_CODE_SUCCESS);
+            setRecordId(id);
         }}, httpCode);
     }
 

@@ -17,6 +17,6 @@ public class WorkContact extends ContactBaseEntity {
     @Column(name = "room_number")
     private String roomNumber;
 
-    @Column(name = "is_valid")
+    @Column(name = "is_valid", columnDefinition = "bit DEFAULT 1")
     private boolean isValid;
 }

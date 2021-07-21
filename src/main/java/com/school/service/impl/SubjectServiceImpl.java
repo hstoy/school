@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
 
 @Service
 public class SubjectServiceImpl implements SubjectService {
+
     private final SubjectRepository subjectRepository;
     private final ModelMapper modelMapper;
 

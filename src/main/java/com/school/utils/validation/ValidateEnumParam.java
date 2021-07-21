@@ -4,9 +4,7 @@ import com.school.utils.annotations.EnumValidator;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 public class ValidateEnumParam implements ConstraintValidator<EnumValidator, String> {
@@ -27,6 +25,6 @@ public class ValidateEnumParam implements ConstraintValidator<EnumValidator, Str
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        return value.contains(value.toUpperCase());
+        return values.contains(value.toUpperCase());
     }
 }

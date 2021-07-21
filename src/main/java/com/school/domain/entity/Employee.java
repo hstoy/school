@@ -5,6 +5,7 @@ import com.school.domain.enums.EmployeeType;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
@@ -43,11 +44,11 @@ public class Employee extends BaseEntity {
     @Column(name = "was_dismissed", columnDefinition = "bit DEFAULT 0")
     private boolean wasDismissed;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "personal_information_id")
     private PersonalInformation personalInformation;
 
-    @OneToOne(fetch = FetchType.EAGER)
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     @JoinColumn(name = "work_contact_id")
     private WorkContact workContact;
 }

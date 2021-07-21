@@ -22,6 +22,7 @@ import java.util.Collections;
 @RestController
 @RequestMapping(value = "/api/subjects")
 public class SubjectController {
+
     private final SubjectService subjectService;
 
     @Autowired
